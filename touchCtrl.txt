@@ -1,4 +1,4 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using UnityEngine.UI;
 using System;
 using System.Collections;
@@ -20,7 +20,7 @@ public class TouchCtrl : MonoBehaviour
         touchCtrl = GetComponent<RectTransform>();
         startPos = touchCtrl.position;
     }
-    //ÅÍÄ¡¸¦ ½ÃÀÛ(event trigger)
+    //í„°ì¹˜ë¥¼ ì‹œìž‘(event trigger)
     public void TouchDown()
     {
         btnPressed = true;

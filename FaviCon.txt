@@ -1,8 +1,8 @@
-https://favicon.io/favicon-converter/
+ï»¿https://favicon.io/favicon-converter/
 
-1.Visual Studio 2019¸¦ ½ÇÇàÇÕ´Ï´Ù.  ÄÚµå¸¦ »ç¿ëÇÏÁö ¾Ê°í °è¼Ó(W) 
-2.ÆÄÀÏ > ¿­±â > ÆÄÀÏ. ´ÜÃàÅ°´Â Ctrl+O
-¿øº» ½ÇÇàÆÄÀÏ
-3.ÇÏ¾á»ö ºó È­¸é¿¡¼­ ¸¶¿ì½º ¿À¸¥ÂÊ ¹öÆ°À» ´­·¯¼­ ¸®¼Ò½º Ãß°¡
-¹Ù²Ü ÀÌ¹ÌÁö
-4.ÀúÀåÇÏ½Ã¸é µË´Ï´Ù. ´ÜÃàÅ°´Â Ctrl+S
+1.Visual Studio 2019ë¥¼ ì‹¤í–‰í•©ë‹ˆë‹¤.  ì½”ë“œë¥¼ ì‚¬ìš©í•˜ì§€ ì•Šê³  ê³„ì†(W) 
+2.íŒŒì¼ > ì—´ê¸° > íŒŒì¼. ë‹¨ì¶•í‚¤ëŠ” Ctrl+O
+ì›ë³¸ ì‹¤í–‰íŒŒì¼
+3.í•˜ì–€ìƒ‰ ë¹ˆ í™”ë©´ì—ì„œ ë§ˆìš°ìŠ¤ ì˜¤ë¥¸ìª½ ë²„íŠ¼ì„ ëˆŒëŸ¬ì„œ ë¦¬ì†ŒìŠ¤ ì¶”ê°€
+ë°”ê¿€ ì´ë¯¸ì§€
+4.ì €ìž¥í•˜ì‹œë©´ ë©ë‹ˆë‹¤. ë‹¨ì¶•í‚¤ëŠ” Ctrl+S

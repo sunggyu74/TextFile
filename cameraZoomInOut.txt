@@ -1,12 +1,12 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class CamController : MonoBehaviour
 {
-    public GameObject player; // ¹Ù¶óº¼ ÇÃ·¹ÀÌ¾î ¿ÀºêÁ§Æ®ÀÔ´Ï´Ù.
-    public float xmove = 0;  // XÃà ´©Àû ÀÌµ¿·®
-    public float ymove = 0;  // YÃà ´©Àû ÀÌµ¿·®
+    public GameObject player; // ë°”ë¼ë³¼ í”Œë ˆì´ì–´ ì˜¤ë¸Œì íŠ¸ì…ë‹ˆë‹¤.
+    public float xmove = 0;  // Xì¶• ëˆ„ì  ì´ë™ëŸ‰
+    public float ymove = 0;  // Yì¶• ëˆ„ì  ì´ë™ëŸ‰
     public float distance = 3;
 
     ///public float rotationSpeed = 0.01f;
@@ -14,20 +14,20 @@ public class CamController : MonoBehaviour
 
     private Vector3 velocity = Vector3.zero;
 
-    private int toggleView=3; // 1=1ÀÎÄª, 3=3ÀÎÄª
+    private int toggleView=3; // 1=1ì¸ì¹­, 3=3ì¸ì¹­
 
     private float wheelspeed=10.0f;
 
     // Update is called once per frame
     void Update()
     {
-        //  ¸¶¿ì½º ¿ìÅ¬¸¯ Áß¿¡¸¸ Ä«¸Ş¶ó ¹«ºù Àû¿ë
+        //  ë§ˆìš°ìŠ¤ ìš°í´ë¦­ ì¤‘ì—ë§Œ ì¹´ë©”ë¼ ë¬´ë¹™ ì ìš©
         if (Input.GetMouseButton(1))
         {
-            xmove += Input.GetAxis("Mouse X"); // ¸¶¿ì½ºÀÇ ÁÂ¿ì ÀÌµ¿·®À» xmove ¿¡ ´©ÀûÇÕ´Ï´Ù.
-            ymove -= Input.GetAxis("Mouse Y"); // ¸¶¿ì½ºÀÇ »óÇÏ ÀÌµ¿·®À» ymove ¿¡ ´©ÀûÇÕ´Ï´Ù.
+            xmove += Input.GetAxis("Mouse X"); // ë§ˆìš°ìŠ¤ì˜ ì¢Œìš° ì´ë™ëŸ‰ì„ xmove ì— ëˆ„ì í•©ë‹ˆë‹¤.
+            ymove -= Input.GetAxis("Mouse Y"); // ë§ˆìš°ìŠ¤ì˜ ìƒí•˜ ì´ë™ëŸ‰ì„ ymove ì— ëˆ„ì í•©ë‹ˆë‹¤.
         }
-        transform.rotation = Quaternion.Euler(ymove, xmove, 0); // ÀÌµ¿·®¿¡ µû¶ó Ä«¸Ş¶óÀÇ ¹Ù¶óº¸´Â ¹æÇâÀ» Á¶Á¤ÇÕ´Ï´Ù.
+        transform.rotation = Quaternion.Euler(ymove, xmove, 0); // ì´ë™ëŸ‰ì— ë”°ë¼ ì¹´ë©”ë¼ì˜ ë°”ë¼ë³´ëŠ” ë°©í–¥ì„ ì¡°ì •í•©ë‹ˆë‹¤.
         
         if (Input.GetMouseButtonDown(2))
             toggleView = 4 - toggleView;
@@ -41,12 +41,12 @@ public class CamController : MonoBehaviour
 
         if (toggleView == 1)
         {
-            Vector3 reverseDistance = new Vector3(0.0f, 0.4f, 0.2f); // Ä«¸Ş¶ó°¡ ¹Ù¶óº¸´Â ¾Õ¹æÇâÀº Z ÃàÀÔ´Ï´Ù. ÀÌµ¿·®¿¡ µû¸¥ Z Ãà¹æÇâÀÇ º¤ÅÍ¸¦ ±¸ÇÕ´Ï´Ù.
-            transform.position = player.transform.position + transform.rotation * reverseDistance; // ÇÃ·¹ÀÌ¾îÀÇ À§Ä¡¿¡¼­ Ä«¸Ş¶ó°¡ ¹Ù¶óº¸´Â ¹æÇâ¿¡ º¤ÅÍ°ªÀ» Àû¿ëÇÑ »ó´ë ÁÂÇ¥¸¦ Â÷°¨ÇÕ´Ï´Ù.
+            Vector3 reverseDistance = new Vector3(0.0f, 0.4f, 0.2f); // ì¹´ë©”ë¼ê°€ ë°”ë¼ë³´ëŠ” ì•ë°©í–¥ì€ Z ì¶•ì…ë‹ˆë‹¤. ì´ë™ëŸ‰ì— ë”°ë¥¸ Z ì¶•ë°©í–¥ì˜ ë²¡í„°ë¥¼ êµ¬í•©ë‹ˆë‹¤.
+            transform.position = player.transform.position + transform.rotation * reverseDistance; // í”Œë ˆì´ì–´ì˜ ìœ„ì¹˜ì—ì„œ ì¹´ë©”ë¼ê°€ ë°”ë¼ë³´ëŠ” ë°©í–¥ì— ë²¡í„°ê°’ì„ ì ìš©í•œ ìƒëŒ€ ì¢Œí‘œë¥¼ ì°¨ê°í•©ë‹ˆë‹¤.
         }
         else if (toggleView == 3)
         {
-            Vector3 reverseDistance = new Vector3(0.0f, 0.0f, distance); // Ä«¸Ş¶ó°¡ ¹Ù¶óº¸´Â ¾Õ¹æÇâÀº Z ÃàÀÔ´Ï´Ù. ÀÌµ¿·®¿¡ µû¸¥ Z Ãà¹æÇâÀÇ º¤ÅÍ¸¦ ±¸ÇÕ´Ï´Ù.
+            Vector3 reverseDistance = new Vector3(0.0f, 0.0f, distance); // ì¹´ë©”ë¼ê°€ ë°”ë¼ë³´ëŠ” ì•ë°©í–¥ì€ Z ì¶•ì…ë‹ˆë‹¤. ì´ë™ëŸ‰ì— ë”°ë¥¸ Z ì¶•ë°©í–¥ì˜ ë²¡í„°ë¥¼ êµ¬í•©ë‹ˆë‹¤.
             transform.position = Vector3.SmoothDamp(
                 transform.position,
                 player.transform.position - transform.rotation * reverseDistance,
@@ -55,37 +55,37 @@ public class CamController : MonoBehaviour
         }
     }
 }
-ÇÃ·¹ÀÌÁß ¸¶¿ì½º ÈÙÀ» ±¼¸®¸é Ä«¸Ş¶ó°¡ ¾ÕÀ¸·Î ÁÜÀÎ(Zoom In)À» ÇÏ°Å³ª, µÚ·Î ÁÜ¾Æ¿ô(Zoom Out)ÇÒ ¼ö ÀÖ½À´Ï´Ù.
-ÁÜÀÎ, ÁÜ¾Æ¿ô ±â´ÉÀº 3ÀÎÄª ½ÃÁ¡ º¸±â¿¡¼­¸¸ ÀÛµ¿ÇÕ´Ï´Ù.
-ÁÜÀÇ °Å¸®´Â °¡Àå °¡±îÀÌ´Â ±ÙÁ¢ 1¹ÌÅÍ, ÃÖÀå °Å¸®´Â 100¹ÌÅÍ±îÁö °¡´ÉÇÕ´Ï´Ù.
+í”Œë ˆì´ì¤‘ ë§ˆìš°ìŠ¤ íœ ì„ êµ´ë¦¬ë©´ ì¹´ë©”ë¼ê°€ ì•ìœ¼ë¡œ ì¤Œì¸(Zoom In)ì„ í•˜ê±°ë‚˜, ë’¤ë¡œ ì¤Œì•„ì›ƒ(Zoom Out)í•  ìˆ˜ ìˆìŠµë‹ˆë‹¤.
+ì¤Œì¸, ì¤Œì•„ì›ƒ ê¸°ëŠ¥ì€ 3ì¸ì¹­ ì‹œì  ë³´ê¸°ì—ì„œë§Œ ì‘ë™í•©ë‹ˆë‹¤.
+ì¤Œì˜ ê±°ë¦¬ëŠ” ê°€ì¥ ê°€ê¹Œì´ëŠ” ê·¼ì ‘ 1ë¯¸í„°, ìµœì¥ ê±°ë¦¬ëŠ” 100ë¯¸í„°ê¹Œì§€ ê°€ëŠ¥í•©ë‹ˆë‹¤.
 https://itadventure.tistory.com/403
 
-»ç½Ç ¿À´Ã Ãß°¡µÈ ÄÚµå´Â ¾ÆÁÖ ´Ü¼øÇÕ´Ï´Ù.
+ì‚¬ì‹¤ ì˜¤ëŠ˜ ì¶”ê°€ëœ ì½”ë“œëŠ” ì•„ì£¼ ë‹¨ìˆœí•©ë‹ˆë‹¤.
 
-¸¶¿ì½º ÈÙÀÇ ±¼¸² ÀÌµ¿·®À» ÆÇ´ÜÇØ¼­ ÁÜÀÎ, ¾Æ¿ôÀ» Àû¿ëÇØÁÖ´Â °ÍÀÎµ¥¿ä.
+ë§ˆìš°ìŠ¤ íœ ì˜ êµ´ë¦¼ ì´ë™ëŸ‰ì„ íŒë‹¨í•´ì„œ ì¤Œì¸, ì•„ì›ƒì„ ì ìš©í•´ì£¼ëŠ” ê²ƒì¸ë°ìš”.
 
-¿ì¼± ¸¶¿ì½º ÈÙÀ» µ¹·ÈÀ» ¶§ÀÇ ÀÌµ¿·®À» ÆÇ´ÜÇÏ´Â ÇÔ¼ö´Â ¾Æ·¡¿Í °°½À´Ï´Ù.
+ìš°ì„  ë§ˆìš°ìŠ¤ íœ ì„ ëŒë ¸ì„ ë•Œì˜ ì´ë™ëŸ‰ì„ íŒë‹¨í•˜ëŠ” í•¨ìˆ˜ëŠ” ì•„ë˜ì™€ ê°™ìŠµë‹ˆë‹¤.
 
 Input.GetAxis("Mouse ScrollWheel")
-¸¶¿ì½º ÀÌµ¿°ú ºñ½ÁÇÑ ¿ø¸®·Î Update() ÇÔ¼ö°¡ È£ÃâµÉ ¶§¸¶´Ù ÀÌµ¿ÇÑ ·®À» ¸®ÅÏÇØ Áİ´Ï´Ù.
-ÇÃ·¹ÀÌ¾î¿Í Ä«¸Ş¶óÀÇ °Å¸®¸¦ ³ªÅ¸³»´Â distance º¯¼ö¿¡¼­ ÀÌ °ªÀ» »©Áİ´Ï´Ù. ±×°ÍÀ¸·Î Ä«¸Ş¶ó °Å¸®°¡ Á¶Á¤µÇ´Âµ¥¿ä.
+ë§ˆìš°ìŠ¤ ì´ë™ê³¼ ë¹„ìŠ·í•œ ì›ë¦¬ë¡œ Update() í•¨ìˆ˜ê°€ í˜¸ì¶œë  ë•Œë§ˆë‹¤ ì´ë™í•œ ëŸ‰ì„ ë¦¬í„´í•´ ì¤ë‹ˆë‹¤.
+í”Œë ˆì´ì–´ì™€ ì¹´ë©”ë¼ì˜ ê±°ë¦¬ë¥¼ ë‚˜íƒ€ë‚´ëŠ” distance ë³€ìˆ˜ì—ì„œ ì´ ê°’ì„ ë¹¼ì¤ë‹ˆë‹¤. ê·¸ê²ƒìœ¼ë¡œ ì¹´ë©”ë¼ ê±°ë¦¬ê°€ ì¡°ì •ë˜ëŠ”ë°ìš”.
 
 distance -= Input.GetAxis("Mouse ScrollWheel") * wheelspeed;
-3ÀÎÄª ½ÃÁ¡¿¡¼­ distance º¯¼ö·Î ÀÌ¹Ì Ä«¸Ş¶ó¸¦ Á¶Á¤ÇÏ´Â ÄÚµå°¡ ÀÛµ¿ÇÏ°í ÀÖ±â ¶§¹®ÀÔ´Ï´Ù.
-ÀÌ ÄÚµå´Â ÀÌ¹Ì ÀÛµ¿µÇ°í ÀÖ¾úÁö¿ä.
+3ì¸ì¹­ ì‹œì ì—ì„œ distance ë³€ìˆ˜ë¡œ ì´ë¯¸ ì¹´ë©”ë¼ë¥¼ ì¡°ì •í•˜ëŠ” ì½”ë“œê°€ ì‘ë™í•˜ê³  ìˆê¸° ë•Œë¬¸ì…ë‹ˆë‹¤.
+ì´ ì½”ë“œëŠ” ì´ë¯¸ ì‘ë™ë˜ê³  ìˆì—ˆì§€ìš”.
 
-Vector3 reverseDistance = new Vector3(0.0f, 0.0f, distance); // Ä«¸Ş¶ó°¡ ¹Ù¶óº¸´Â ¾Õ¹æÇâÀº Z ÃàÀÔ´Ï´Ù. ÀÌµ¿·®¿¡ µû¸¥ Z Ãà¹æÇâÀÇ º¤ÅÍ¸¦ ±¸ÇÕ´Ï´Ù.
+Vector3 reverseDistance = new Vector3(0.0f, 0.0f, distance); // ì¹´ë©”ë¼ê°€ ë°”ë¼ë³´ëŠ” ì•ë°©í–¥ì€ Z ì¶•ì…ë‹ˆë‹¤. ì´ë™ëŸ‰ì— ë”°ë¥¸ Z ì¶•ë°©í–¥ì˜ ë²¡í„°ë¥¼ êµ¬í•©ë‹ˆë‹¤.
 transform.position = Vector3.SmoothDamp(
     transform.position,
     player.transform.position - transform.rotation * reverseDistance,
     ref velocity,
     SmoothTime);
-´Ü, distance °ªÀ» Á¶Á¤ÇÏ¸é¼­ °Å¸®°¡ ³Ê¹« °¡±õ°Å³ª ¸Ö¸® ¶³¾îÁöÁö ¾Ê°Ô
-Á¶Á¤ÇØÁÖ´Â ÄÚµå°¡ Ãß°¡µÇ°í,
+ë‹¨, distance ê°’ì„ ì¡°ì •í•˜ë©´ì„œ ê±°ë¦¬ê°€ ë„ˆë¬´ ê°€ê¹ê±°ë‚˜ ë©€ë¦¬ ë–¨ì–´ì§€ì§€ ì•Šê²Œ
+ì¡°ì •í•´ì£¼ëŠ” ì½”ë“œê°€ ì¶”ê°€ë˜ê³ ,
 
 if (distance < 1.0f) distance = 1.0f;
 if (distance > 100.0f) distance = 100.0f;
-3ÀÎÄª ½ÃÁ¡ ¸ğµå¿¡¼­¸¸ ÀÛµ¿ÇÏµµ·Ï Á¦¾àÀ» °É¾îÁÖ´Â °ÍÀÌÁö¿ä.
+3ì¸ì¹­ ì‹œì  ëª¨ë“œì—ì„œë§Œ ì‘ë™í•˜ë„ë¡ ì œì•½ì„ ê±¸ì–´ì£¼ëŠ” ê²ƒì´ì§€ìš”.
 
 if (toggleView == 3)
 {
