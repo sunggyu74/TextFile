@@ -1,0 +1,95 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class CamController : MonoBehaviour
+{
+    public GameObject player; // 바라볼 플레이어 오브젝트입니다.
+    public float xmove = 0;  // X축 누적 이동량
+    public float ymove = 0;  // Y축 누적 이동량
+    public float distance = 3;
+
+    ///public float rotationSpeed = 0.01f;
+    public float SmoothTime = 0.2f;
+
+    private Vector3 velocity = Vector3.zero;
+
+    private int toggleView=3; // 1=1인칭, 3=3인칭
+
+    private float wheelspeed=10.0f;
+
+    // Update is called once per frame
+    void Update()
+    {
+        //  마우스 우클릭 중에만 카메라 무빙 적용
+        if (Input.GetMouseButton(1))
+        {
+            xmove += Input.GetAxis("Mouse X"); // 마우스의 좌우 이동량을 xmove 에 누적합니다.
+            ymove -= Input.GetAxis("Mouse Y"); // 마우스의 상하 이동량을 ymove 에 누적합니다.
+        }
+        transform.rotation = Quaternion.Euler(ymove, xmove, 0); // 이동량에 따라 카메라의 바라보는 방향을 조정합니다.
+        
+        if (Input.GetMouseButtonDown(2))
+            toggleView = 4 - toggleView;
+
+        if (toggleView == 3)
+        {
+            distance -= Input.GetAxis("Mouse ScrollWheel") * wheelspeed;
+            if (distance < 1.0f) distance = 1.0f;
+            if (distance > 100.0f) distance = 100.0f;
+        }
+
+        if (toggleView == 1)
+        {
+            Vector3 reverseDistance = new Vector3(0.0f, 0.4f, 0.2f); // 카메라가 바라보는 앞방향은 Z 축입니다. 이동량에 따른 Z 축방향의 벡터를 구합니다.
+            transform.position = player.transform.position + transform.rotation * reverseDistance; // 플레이어의 위치에서 카메라가 바라보는 방향에 벡터값을 적용한 상대 좌표를 차감합니다.
+        }
+        else if (toggleView == 3)
+        {
+            Vector3 reverseDistance = new Vector3(0.0f, 0.0f, distance); // 카메라가 바라보는 앞방향은 Z 축입니다. 이동량에 따른 Z 축방향의 벡터를 구합니다.
+            transform.position = Vector3.SmoothDamp(
+                transform.position,
+                player.transform.position - transform.rotation * reverseDistance,
+                ref velocity,
+                SmoothTime);
+        }
+    }
+}
+플레이중 마우스 휠을 굴리면 카메라가 앞으로 줌인(Zoom In)을 하거나, 뒤로 줌아웃(Zoom Out)할 수 있습니다.
+줌인, 줌아웃 기능은 3인칭 시점 보기에서만 작동합니다.
+줌의 거리는 가장 가까이는 근접 1미터, 최장 거리는 100미터까지 가능합니다.
+https://itadventure.tistory.com/403
+
+사실 오늘 추가된 코드는 아주 단순합니다.
+
+마우스 휠의 굴림 이동량을 판단해서 줌인, 아웃을 적용해주는 것인데요.
+
+우선 마우스 휠을 돌렸을 때의 이동량을 판단하는 함수는 아래와 같습니다.
+
+Input.GetAxis("Mouse ScrollWheel")
+마우스 이동과 비슷한 원리로 Update() 함수가 호출될 때마다 이동한 량을 리턴해 줍니다.
+플레이어와 카메라의 거리를 나타내는 distance 변수에서 이 값을 빼줍니다. 그것으로 카메라 거리가 조정되는데요.
+
+distance -= Input.GetAxis("Mouse ScrollWheel") * wheelspeed;
+3인칭 시점에서 distance 변수로 이미 카메라를 조정하는 코드가 작동하고 있기 때문입니다.
+이 코드는 이미 작동되고 있었지요.
+
+Vector3 reverseDistance = new Vector3(0.0f, 0.0f, distance); // 카메라가 바라보는 앞방향은 Z 축입니다. 이동량에 따른 Z 축방향의 벡터를 구합니다.
+transform.position = Vector3.SmoothDamp(
+    transform.position,
+    player.transform.position - transform.rotation * reverseDistance,
+    ref velocity,
+    SmoothTime);
+단, distance 값을 조정하면서 거리가 너무 가깝거나 멀리 떨어지지 않게
+조정해주는 코드가 추가되고,
+
+if (distance < 1.0f) distance = 1.0f;
+if (distance > 100.0f) distance = 100.0f;
+3인칭 시점 모드에서만 작동하도록 제약을 걸어주는 것이지요.
+
+if (toggleView == 3)
+{
+    distance -= Input.GetAxis("Mouse ScrollWheel") * wheelspeed;
+    if (distance < 1.0f) distance = 1.0f;
+    if (distance > 100.0f) distance = 100.0f;
+}
